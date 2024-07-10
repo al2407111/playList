@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+android:id="@+id/media"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/white"
+android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/padding56"
+    android:orientation="horizontal"
+    android:padding="@dimen/padding4">
+
+    <Button
+        android:id="@+id/button_back"
+        style="@style/arrow"
+        android:layout_width="@dimen/padding48"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:iconTint="@color/black"
+
+        />
+
+    <TextView
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/padding12"
+        android:text="@string/media"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size22"
+        />
+</LinearLayout>
+</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,6 +24,7 @@
     </FrameLayout>
 
     <Button
+        android:id="@+id/button_search"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/padding24"
@@ -37,6 +38,7 @@
         />
 
     <Button
+        android:id="@+id/button_media"
         style="@style/Button"
         android:layout_width="match_parent"
 
@@ -54,6 +56,7 @@
         />
 
     <Button
+        android:id="@+id/button_settings"
         style="@style/Button"
         android:layout_width="match_parent"
         android:layout_marginTop="@dimen/padding16"

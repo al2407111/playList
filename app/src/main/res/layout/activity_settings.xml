@@ -19,6 +19,7 @@
             android:padding="@dimen/padding4">
 
             <Button
+                android:id="@+id/button_back"
                 style="@style/arrow"
                 android:layout_width="@dimen/padding48"
                 android:layout_height="match_parent"
