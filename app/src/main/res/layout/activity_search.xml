@@ -25,7 +25,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="start"
                 android:iconTint="@color/black"
-
+                android:foreground="?attr/selectableItemBackground"
                 />
 
             <TextView
