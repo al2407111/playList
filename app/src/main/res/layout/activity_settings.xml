@@ -16,30 +16,35 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/padding56"
             android:orientation="horizontal"
-            android:padding="@dimen/padding4">
+            android:padding="@dimen/padding4" >
 
-            <Button
+            <ImageView
                 android:id="@+id/button_back"
-                style="@style/arrow"
-                android:layout_width="@dimen/padding48"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:iconTint="@color/black"
-                android:foreground="?attr/selectableItemBackground"
-              />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="@dimen/padding12"
+                android:iconTint="@color/icon_color"
+                android:paddingEnd="@dimen/padding12"
+                android:src="@drawable/ic_arrow"
+
+                />
 
             <TextView
 
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/padding12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="12dp"
+                android:gravity="end"
                 android:text="@string/settings"
                 android:textColor="@color/black"
-                android:textSize="@dimen/text_size22"
-                />
+                android:textSize="@dimen/text_size22" />
 
         </LinearLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/padding61"
@@ -54,12 +59,17 @@
                 android:textColor="@color/black"
                 android:paddingLeft="@dimen/text_size16"
                 android:layout_gravity="top"/>
-             <Switch
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:gravity="center_vertical"
-                 android:paddingEnd="18dp"
-                 />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switcher"
+                style="@style/SettingsMenuIcon"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/padding61"
+                android:paddingStart="@dimen/padding16"
+                android:paddingTop="16dp"
+                android:paddingEnd="@dimen/padding16"
+                android:paddingBottom="16dp"
+                  />
         </FrameLayout>
         <FrameLayout
             android:layout_width="match_parent"

@@ -22,5 +22,9 @@
         <item name="icon">@drawable/ic_arrow</item>
 
     </style>
-
+    <style name="SettingsMenuIcon">
+        <item name="android:layout_width">@dimen/padding61</item>
+        <item name="android:layout_height">@dimen/padding24</item>
+        <item name="android:layout_gravity">end</item>
+    </style>
 </resources>
