@@ -26,9 +26,8 @@
                 android:layout_gravity="center_vertical"
                 android:layout_margin="@dimen/padding12"
                 android:iconTint="@color/icon_color"
-                android:paddingEnd="@dimen/padding12"
                 android:src="@drawable/ic_arrow"
-
+                android:padding="@dimen/padding4"
                 />
 
             <TextView
@@ -36,8 +35,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-
                 android:layout_marginTop="@dimen/padding10"
+                android:layout_marginStart="@dimen/padding12"
                 android:layout_marginBottom="@dimen/padding12"
                 android:gravity="end"
                 android:text="@string/settings"
@@ -47,100 +46,70 @@
         </LinearLayout>
         <FrameLayout
             style="@style/SettingsMenu"
-            android:layout_height="wrap_content">
+       android:layout_marginTop="@dimen/padding16"
+           >
+
             <TextView
                 style="@style/SettingsMenuText"
                 android:text="@string/dark_thema" />
 
             <androidx.appcompat.widget.SwitchCompat
+                android:paddingEnd="@dimen/padding9"
                 android:id="@+id/switcher"
-                style="@style/SettingsMenuIcon"
                 android:layout_width="@dimen/padding56"
                 android:layout_height="@dimen/padding48"
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/padding10"
-                android:layout_marginEnd="@dimen/padding15"
+                android:layout_marginEnd="@dimen/padding6"
                 android:layout_marginBottom="@dimen/padding11"
                 android:thumb="@drawable/knob"
                 android:track="@drawable/track"
                 app:thumbTint="@drawable/ic_thumb"
-                app:trackTint="@drawable/ic_on"
+                app:trackTint="@drawable/ic_track"
 
                 />
         </FrameLayout>
 
 
         <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding61"
-            android:layout_gravity="start">
+            style="@style/SettingsMenu"
+            >
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/text_size16"
-                android:text="@string/share_app"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size16" />
+                style="@style/SettingsMenuText"
+                android:text="@string/share_app" />
 
             <TextView
-                android:layout_gravity="end"
-                android:scaleType="center"
+                style="@style/SettingsMenuIcon"
                 android:drawableEnd="@drawable/ic_sherp_ligt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding19"
-                android:layout_marginRight="@dimen/padding12" />
+
+                 />
         </FrameLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding61"
-            android:layout_gravity="start">
+
+        <FrameLayout style="@style/SettingsMenu">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/text_size16"
-                android:text="@string/write_string"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size16" />
+                style="@style/SettingsMenuText"
+                android:text="@string/write_string" />
 
             <TextView
-                android:layout_gravity="end"
-                android:scaleType="center"
-                android:drawableEnd="@drawable/ic_light_mode"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding19"
-                android:layout_marginRight="@dimen/padding12" />
+                style="@style/SettingsMenuIcon"
+
+                android:drawableEnd="@drawable/ic_light_mode" />
         </FrameLayout>
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/padding61"
-            android:layout_gravity="start">
+
+
+        <FrameLayout style="@style/SettingsMenu">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="top"
-                android:gravity="center_vertical"
-                android:paddingLeft="@dimen/text_size16"
+                style="@style/SettingsMenuText"
                 android:text="@string/user_accept"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size16" />
+                />
 
             <TextView
-                android:layout_gravity="end"
-                android:scaleType="center"
+
                 android:drawableEnd="@drawable/ic_light_accept"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding19"
-                android:layout_marginRight="@dimen/padding12" />
+                style="@style/SettingsMenuIcon" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>
