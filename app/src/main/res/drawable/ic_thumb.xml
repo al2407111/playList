@@ -1,5 +1,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
   <item android:state_checked="true"
-      android:color = "#3772E7"/>
-  <item android:color="#AEAFB4"/>
+      android:color = "@color/icon_Knob_on"/>
+  <item android:color="@color/icon_Knob_off"/>
 </selector>
