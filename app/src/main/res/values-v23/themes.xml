@@ -5,5 +5,54 @@
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <item name="colorOnPrimary">@color/light_main</item>
+        <item  name="colorOnSecondary">@color/white</item>
+
     </style>
+
+
+    <style name="SettingsButtonViewShareMode">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:scaleType">center</item>
+        <item name="drawableEndCompat">@drawable/ic_sherp_ligt</item>
+        <item name="android:layout_width">@dimen/padding24</item>
+        <item name="android:layout_height">@dimen/padding24</item>
+
+        <item name="android:layout_marginTop">@dimen/padding19</item>
+        <item name="android:layout_marginRight">@dimen/padding12</item>
+        <item name="android:layout_marginBottom">@dimen/padding18</item>
+    </style>
+    <style name="SettingsButtonViewHelpMode">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:scaleType">center</item>
+        <item name="drawableEndCompat">@drawable/ic_light_mode</item>
+        <item name="android:layout_width">@dimen/padding24</item>
+        <item name="android:layout_height">@dimen/padding24</item>
+
+        <item name="android:layout_marginTop">@dimen/padding19</item>
+        <item name="android:layout_marginRight">@dimen/padding12</item>
+        <item name="android:layout_marginBottom">@dimen/padding18</item>
+    </style>
+
+    <style name="SettingsButtonViewAcceptMode">
+        <item name="android:layout_gravity">end</item>
+        <item name="android:scaleType">center</item>
+        <item name="drawableEndCompat">@drawable/ic_light_accept</item>
+        <item name="android:layout_width">@dimen/padding24</item>
+        <item name="android:layout_height">@dimen/padding24</item>
+
+        <item name="android:layout_marginTop">@dimen/padding19</item>
+        <item name="android:layout_marginRight">@dimen/padding12</item>
+        <item name="android:layout_marginBottom">@dimen/padding18</item>
+    </style>
+
+    <style name="SettingsButtonViewArrowMode">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/padding12</item>
+        <item name="android:src">@drawable/ic_arrow</item>
+        <item name="android:padding">@dimen/padding4</item>
+
+</style>
 </resources>

@@ -46,8 +46,8 @@
         </LinearLayout>
         <FrameLayout
             style="@style/SettingsMenu"
-       android:layout_marginTop="@dimen/padding16"
-           >
+            android:layout_marginTop="@dimen/padding16"
+            >
 
             <TextView
                 style="@style/SettingsMenuText"
@@ -83,7 +83,7 @@
                 style="@style/SettingsMenuIcon"
                 android:drawableEnd="@drawable/ic_sherp_ligt"
 
-                 />
+                />
         </FrameLayout>
 
         <FrameLayout style="@style/SettingsMenu">
