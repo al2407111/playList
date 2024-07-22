@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/padding0</item>
+        <item name="android:backgroundTint">@color/button_color</item>
+        <item name="android:foreground">?attr/selectableItemBackground</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/text_button</item>
+        <item name="android:textSize">@dimen/text_size22</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconTint">@color/black</item>
+        <item name="android:layout_marginRight">@dimen/padding2</item>
+        <item name="cornerRadius">@dimen/padding16</item>
+    </style>
+    <style name="arrow">
+        <item name="android:layout_gravity">start</item>
+        <item name="android:backgroundTint">@color/white</item>
+        <item name="iconGravity">textStart</item>
+        <item name="iconTint">@color/black</item>
+        <item name="icon">@drawable/ic_arrow</item>
+
+    </style>
+    <style name="SettingsMenuIcon">
+
+        <item name="android:layout_width">@dimen/padding24</item>
+        <item name="android:layout_height">@dimen/padding24</item>
+        <item name="android:layout_gravity">end</item>
+        <item name="android:layout_marginTop">@dimen/padding19</item>
+        <item name="android:layout_marginRight">@dimen/padding12</item>
+        <item name="android:layout_marginBottom">@dimen/padding18</item>
+    </style>
+
+<style name="SettingsMenu">
+<item name="android:layout_width">match_parent</item>
+<item name="android:layout_marginStart">@dimen/padding16</item>
+    <item name="android:layout_height">wrap_content</item>
+<item name="android:orientation">vertical</item>
+</style>
+    <style name="SettingsMenuLine">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingTop">@dimen/padding20</item>
+        <item name="android:paddingBottom">@dimen/padding20</item>
+    </style>
+    <style name="SettingsMenuText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">@dimen/padding16</item>
+    </style>
+
+</resources>
