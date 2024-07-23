@@ -10,51 +10,42 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="?attr/colorOnSecondary"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/padding56"
             android:orientation="horizontal"
-            android:padding="@dimen/padding4" >
+            android:padding="@dimen/padding4">
 
             <ImageView
                 android:id="@+id/button_back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_margin="@dimen/padding12"
-                android:iconTint="@color/icon_color"
-                android:src="@drawable/ic_arrow"
-                android:padding="@dimen/padding4"
-                />
-
+                style="@style/SettingsButtonViewArrowMode"
+           />
             <TextView
-
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginTop="@dimen/padding10"
                 android:layout_marginStart="@dimen/padding12"
+                android:layout_marginTop="@dimen/padding10"
                 android:layout_marginBottom="@dimen/padding12"
                 android:gravity="end"
                 android:text="@string/settings"
-                android:textColor="@color/black"
-                android:textSize="@dimen/text_size22" />
-
+                style="@style/SettingsMenuTextMode"
+                android:textSize="@dimen/text_size22"
+         />
         </LinearLayout>
+
         <FrameLayout
             style="@style/SettingsMenu"
-       android:layout_marginTop="@dimen/padding16"
-           >
+            android:layout_marginTop="@dimen/padding16">
 
             <TextView
-                style="@style/SettingsMenuText"
+                style="@style/SettingsMenuTextMode"
                 android:text="@string/dark_thema" />
 
             <androidx.appcompat.widget.SwitchCompat
-                android:paddingEnd="@dimen/padding9"
                 android:id="@+id/switcher"
                 android:layout_width="@dimen/padding56"
                 android:layout_height="@dimen/padding48"
@@ -62,38 +53,36 @@
                 android:layout_marginTop="@dimen/padding10"
                 android:layout_marginEnd="@dimen/padding6"
                 android:layout_marginBottom="@dimen/padding11"
+                android:paddingEnd="@dimen/padding9"
                 android:thumb="@drawable/knob"
                 android:track="@drawable/track"
                 app:thumbTint="@drawable/ic_thumb"
                 app:trackTint="@drawable/ic_track"
-
                 />
         </FrameLayout>
 
 
-        <FrameLayout
-            style="@style/SettingsMenu"
-            >
+        <FrameLayout style="@style/SettingsMenu">
 
             <TextView
-                style="@style/SettingsMenuText"
+                style="@style/SettingsMenuTextMode"
                 android:text="@string/share_app" />
 
             <TextView
-                style="@style/SettingsMenuIcon"
+                style="@style/SettingsButtonViewShareMode"
                 android:drawableEnd="@drawable/ic_sherp_ligt"
 
-                 />
+                />
         </FrameLayout>
 
         <FrameLayout style="@style/SettingsMenu">
 
             <TextView
-                style="@style/SettingsMenuText"
+                style="@style/SettingsMenuTextMode"
                 android:text="@string/write_string" />
 
             <TextView
-                style="@style/SettingsMenuIcon"
+                style="@style/SettingsButtonViewHelpMode"
 
                 android:drawableEnd="@drawable/ic_light_mode" />
         </FrameLayout>
@@ -102,14 +91,13 @@
         <FrameLayout style="@style/SettingsMenu">
 
             <TextView
-                style="@style/SettingsMenuText"
-                android:text="@string/user_accept"
-                />
+                style="@style/SettingsMenuTextMode"
+                android:text="@string/user_accept" />
 
             <TextView
 
-                android:drawableEnd="@drawable/ic_light_accept"
-                style="@style/SettingsMenuIcon" />
+                style="@style/SettingsButtonViewAcceptMode"
+                android:drawableEnd="@drawable/ic_light_accept" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>
