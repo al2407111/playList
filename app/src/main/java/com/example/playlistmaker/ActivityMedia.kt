@@ -12,7 +12,7 @@ class ActivityMedia :  AppCompatActivity() {
         setContentView(R.layout.activity_media)
         val backToMainSettings = findViewById<ImageView>(R.id.button_back)
         backToMainSettings.setOnClickListener {
-            super.finish()
+            finish()
         }
     }
 }

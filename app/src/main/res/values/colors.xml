@@ -10,4 +10,9 @@
     <color name="icon_track_off">#E6E8EB</color>
     <color name="icon_Knob_on">#3772E7</color>
     <color name="icon_Knob_off">#AEAFB4</color>
+    <color name="search_help_text">#AEAFB4</color>
+    <color name="search_icon">#AEAFB4</color>
+    <color name="hintcolor">#818C99</color>
+    <color name="search_input">#E6E8EB</color>
+    <color name="cursor_blue">#3772E7</color>
 </resources>

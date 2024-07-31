@@ -1,18 +1,89 @@
 package com.example.playlistmaker
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 
 class ActivitySearch : AppCompatActivity() {
+
+    companion object {
+        const val SEARCH_EDIT_TEXT = "SEARCH_EDIT_TEXT"
+        const val SEARCH_EDIT_TEXT_RETAIN = ""
+    }
+
+    // Переменная для хранения текста поискового запроса
+    private var searhEditText: String = SEARCH_EDIT_TEXT_RETAIN
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        val backToMainSettings = findViewById<ImageView>(R.id.button_back)
+        val backToMainSettings = findViewById<ImageView>(R.id.button_back)//Закрытие
         backToMainSettings.setOnClickListener {
-            super.finish()
+            finish()
         }
+
+        val inputEditText = findViewById<EditText>(R.id.input_editText)
+        val clearButton = findViewById<ImageView>(R.id.clear_icon)
+        // нажатиe иконки
+        clearButton.setOnClickListener {
+            // Сброс
+            clearEditText(inputEditText)
+        }
+        // изменения поля EditText
+        val simpleTextWatcher = object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                // empty
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                if (s.isNullOrEmpty()) {//проверка на наличие строки
+                    clearButton.visibility=View.GONE
+                } else {
+                    clearButton.visibility=View.VISIBLE
+                }
+                searhEditText = s.toString()
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                // empty
+            }
+
+        }
+        inputEditText.addTextChangedListener(simpleTextWatcher)
+
+
     }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        // Сохраняется значение переменной searhEditText с текстом поискового запроса
+        outState.putString(SEARCH_EDIT_TEXT, searhEditText)
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+
+        // Сохраненный текст
+        val inputEditText = findViewById<EditText>(R.id.input_editText)
+        searhEditText = savedInstanceState.getString(SEARCH_EDIT_TEXT, SEARCH_EDIT_TEXT_RETAIN)
+        inputEditText.setText(searhEditText)
+
+    }
+
+
+    private fun clearEditText(inputEditText: EditText?) {
+        inputEditText?.setText(null)
+        val inputMethodManager =
+            this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputMethodManager?.hideSoftInputFromWindow(inputEditText?.windowToken, 0)
+    }
+
 }
