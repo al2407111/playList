@@ -41,7 +41,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/padding8">
-            >
+
 
             <EditText
                 android:id="@+id/input_editText"
@@ -77,9 +77,18 @@
                 app:tint="@color/search_icon"
                 android:padding="@dimen/padding8"
                 android:src="@drawable/exit_button"
-
                 />
+        </FrameLayout>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/padding16"
+            >
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trackList"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

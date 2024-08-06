@@ -75,7 +75,6 @@ class ActivitySearch : AppCompatActivity() {
         val inputEditText = findViewById<EditText>(R.id.input_editText)
         searhEditText = savedInstanceState.getString(SEARCH_EDIT_TEXT, SEARCH_EDIT_TEXT_RETAIN)
         inputEditText.setText(searhEditText)
-
     }
 
 
