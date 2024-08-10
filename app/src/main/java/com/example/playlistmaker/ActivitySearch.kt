@@ -67,6 +67,7 @@ class ActivitySearch : AppCompatActivity() {
 
         val inputEditText = findViewById<EditText>(R.id.input_editText)
         val clearButton = findViewById<ImageView>(R.id.clear_icon)
+        clearButton.visibility=View.GONE
         // нажатиe иконки
         clearButton.setOnClickListener {
             // Сброс

@@ -23,5 +23,5 @@
     <dimen name="padding56">56dp</dimen>
     <dimen name="padding48">48dp</dimen>
     <dimen name="padding61">61dp</dimen>
-
+    <dimen name="track_radius">2dp</dimen>
 </resources>

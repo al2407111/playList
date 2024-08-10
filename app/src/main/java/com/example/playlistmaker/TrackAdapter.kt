@@ -1,6 +1,8 @@
 package com.example.playlistmaker
 
 
+import android.content.Context
+import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +20,11 @@ class TrackAdapter(private val tracks: List<Track>) : RecyclerView.Adapter<Track
        private val trackTime: TextView = itemView.findViewById(R.id.trackTime)
         private val trackImage: ImageView = itemView.findViewById(R.id.trackImage)
 
+
+      private val imgRadius = dpToPx(2F, itemView.context)
+
+
+
         fun bind(track: Track) {
             trackName.text = track.trackName
          artistName.text = track.artistName
@@ -27,9 +34,16 @@ class TrackAdapter(private val tracks: List<Track>) : RecyclerView.Adapter<Track
                 .load(track.artworkUrl100)
                 .placeholder(R.drawable.ic_placeholder_image)
                 .centerCrop()
-                .transform(RoundedCorners(8))
+                .transform(RoundedCorners(imgRadius))
                 .into(trackImage)
         }
+        private fun dpToPx(dp: Float, context: Context): Int {
+            return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                dp,
+                context.resources.displayMetrics).toInt()
+        }
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
@@ -42,4 +56,6 @@ class TrackAdapter(private val tracks: List<Track>) : RecyclerView.Adapter<Track
     }
 
     override fun getItemCount() = tracks.size
+
+
 }
