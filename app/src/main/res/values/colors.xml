@@ -3,6 +3,7 @@
     <color name="text_button">#1A1B22</color>
     <color name="button_color">#ffffff</color>
     <color name="light_main">#3F8AE0</color>
+    <color name="light_main_time">#3F8AE0</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="icon_color">#1A1B22</color>
@@ -15,4 +16,6 @@
     <color name="hintcolor">#818C99</color>
     <color name="search_input">#E6E8EB</color>
     <color name="cursor_blue">#3772E7</color>
+    <color name="search_icon_track">#AEAFB4</color>
+    <color name="time">#FFFFFFFF</color>
 </resources>
