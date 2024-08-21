@@ -19,8 +19,9 @@
     <string name="mail_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="mail_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="mail_address">al2407_9@yandex.ru</string>
-    <string name="url_offer">https://yandex.ru/legal/practicum_offer/</string>
 
+    <string name="url_offer">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="update">Обновить</string>
 
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris

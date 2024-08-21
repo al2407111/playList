@@ -124,5 +124,4 @@ class ActivitySearch : AppCompatActivity() {
             this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         inputMethodManager?.hideSoftInputFromWindow(inputEditText?.windowToken, 0)
     }
-
 }
