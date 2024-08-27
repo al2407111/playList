@@ -58,6 +58,9 @@
                 android:textCursorDrawable="@drawable/cursor"
                 android:textSize="@dimen/padding16"
                 android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:windowSoftInputMode="stateHidden"
                 />
 
             <ImageView
@@ -87,11 +90,13 @@
             android:layout_marginTop="@dimen/padding16"
             >
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trackList"
+                android:id="@+id/track_list"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
             <LinearLayout
-                android:id="@+id/placeholderMessage"
+                android:id="@+id/placeholder_message"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -100,15 +105,15 @@
                 >
 
                 <ImageView
-                    android:id="@+id/messageImg"
+                    android:id="@+id/message_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop= "@dimen/padding86"
                     android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/padding86"
                     android:src="@drawable/error_search" />
 
                 <TextView
-                android:id="@+id/messageText"
+                android:id="@+id/message_text"
                 style="@style/ErrTextStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -120,7 +125,7 @@
                 tools:text="Ошибка Ошибdssssssssssssssssssssssssssdwddwdwwddddddwddd " />
                 <Button
                     style="@style/MainTextStyle"
-                    android:id="@+id/messageButton"
+                    android:id="@+id/update_button"
                     android:backgroundTint="@color/search_err_icon"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -134,9 +139,6 @@
                     />
 
             </LinearLayout>
-
         </FrameLayout>
-
-
     </LinearLayout>
 </LinearLayout>

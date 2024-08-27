@@ -1,11 +1,9 @@
 package com.example.playlistmaker
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
@@ -13,131 +11,163 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.addTextChangedListener
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.lifecycle.lifecycleScope
+
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
-import com.example.playlistmaker.api.itunessearch.ItunesSearchApi
-import com.example.playlistmaker.api.itunessearch.ItunesSearchResponse
-import com.example.playlistmaker.api.itunessearch.SearchMessageCode
+
+
+
+
 
 class ActivitySearch : AppCompatActivity() {
+    private lateinit var searchEditText: EditText
+    private lateinit var clearButton: ImageView
+    private lateinit var backButton: ImageView
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: TrackAdapter
-    private lateinit var placeholderMessage: LinearLayout
     private lateinit var messageImg: ImageView
-    private lateinit var messageText: TextView
-    private lateinit var messageButton: Button
-
-    companion object {
-        const val SEARCH_EDIT_TEXT = "SEARCH_EDIT_TEXT"
-        const val SEARCH_EDIT_TEXT_RETAIN = ""
-        const val SEARCH_URL = "https://itunes.apple.com"
-
-    }
-
-
-    // Переменная для хранения текста поискового запроса
-    private var searhEditText: String = SEARCH_EDIT_TEXT_RETAIN
-
-    // Сервис поиска треков
-    private val itunesSearchBaseUrl = SEARCH_URL
-    private val retrofit = Retrofit.Builder()
-        .baseUrl(itunesSearchBaseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-    private val itunesSearchService = retrofit.create(ItunesSearchApi::class.java)
-
-    private var tracks = ArrayList<Track>()
+    private lateinit var placeholderText: TextView
+    private lateinit var updateButton: Button
+    private lateinit var adapter: TrackAdapter
+    private lateinit var placeholderLayout: LinearLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search)
-        val backToMainSettings = findViewById<ImageView>(R.id.button_back)//Закрытие
-        backToMainSettings.setOnClickListener {
+
+        searchEditText = findViewById(R.id.input_editText)
+        clearButton = findViewById(R.id.clear_icon)
+        backButton = findViewById(R.id.button_back)
+        recyclerView = findViewById(R.id.track_list)
+        placeholderLayout = findViewById(R.id.placeholder_message)
+        messageImg = findViewById(R.id.message_img)
+        placeholderText = findViewById(R.id.message_text)
+        updateButton = findViewById(R.id.update_button)
+
+
+        managementBack()
+        setupSearch()
+        setupRecyclerView()
+
+
+    }
+
+    private fun managementBack() {
+//        val backToMainSettings = findViewById<ImageView>(R.id.button_back)//Закрытие
+//        backToMainSettings.setOnClickListener {
+//            finish()
+//        }
+        backButton.setOnClickListener {
             finish()
         }
-
-
-        val inputEditText = findViewById<EditText>(R.id.input_editText)
-        val clearButton = findViewById<ImageView>(R.id.clear_icon)
-         var placeholderMessage=findViewById<LinearLayout>(R.id.placeholderMessage)
-         var messageImg=findViewById<ImageView >(R.id.messageImg)
-         var messageText=findViewById<TextView>(R.id.messageText)
-       var messageButton=findViewById<Button>(R.id.messageButton)
-
-
-        clearButton.visibility=View.GONE
+        clearButton.visibility = View.GONE
         // нажатиe иконки
         clearButton.setOnClickListener {
             // Сброс
-            clearEditText(inputEditText)
+            clearEditText(searchEditText)
         }
-        // изменения поля EditText
-        val simpleTextWatcher = object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                // empty
-            }
 
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                if (s.isNullOrEmpty()) {//проверка на наличие строки
-                    clearButton.visibility=View.GONE
-                } else {
-                    clearButton.visibility=View.VISIBLE
-                }
-                searhEditText = s.toString()
-            }
+    }
 
-            override fun afterTextChanged(s: Editable?) {
-                // empty
+    private fun setupSearch() {
+        searchEditText.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
+                // ВЫПОЛНЯЙТЕ ПОИСК
+                performSearch()
+                closeHideKeyboard()
+                true
+            } else {
+                false
+
             }
 
         }
-        inputEditText.addTextChangedListener(simpleTextWatcher)
-        recyclerView = findViewById(R.id.trackList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
-        adapter = TrackAdapter(tracks)
-        recyclerView.adapter = adapter
 
+        clearButton.setOnClickListener {
+            searchEditText.text.clear()
+            clearButton.visibility = View.GONE
+            closeSearch()
+            closeHideKeyboard()
+        }
+
+
+
+        searchEditText.addTextChangedListener {
+            if (searchEditText.text.isNullOrEmpty()) {//проверка на наличие строки
+                clearButton.visibility = View.GONE
+            } else {
+                clearButton.visibility = View.VISIBLE
+            }
+        }
+
+        updateButton.setOnClickListener {
+            performSearch()
+        }
     }
 
-
-
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        // Сохраняется значение переменной searhEditText с текстом поискового запроса
-        outState.putString(SEARCH_EDIT_TEXT, searhEditText)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-
-        // Сохраненный текст
-        val inputEditText = findViewById<EditText>(R.id.input_editText)
-        searhEditText = savedInstanceState.getString(SEARCH_EDIT_TEXT, SEARCH_EDIT_TEXT_RETAIN)
-        inputEditText.setText(searhEditText)
-    }
-
-
-    private fun clearEditText(inputEditText: EditText?) {
-        inputEditText?.setText(null)
-        val inputMethodManager =
-            this.getSystemService(INPUT_METHOD_SERVICE) as? InputMethodManager
-        inputMethodManager?.hideSoftInputFromWindow(inputEditText?.windowToken, 0)
-    }
     private fun setupRecyclerView() {
         adapter = TrackAdapter(emptyList())
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
     }
 
+    private fun performSearch() {
+        val term = searchEditText.text.toString().trim()
+        if (term.isNotEmpty()) {
+            lifecycleScope.launch {
+                try {
+                    val response = iTunesApiService.searchTracks(term)
+                    if (response.results.isEmpty()) {
+                      //  Плейсхолдер (нет результатов)
+                        recyclerView.visibility = View.GONE
+                        placeholderLayout.visibility = View.VISIBLE
+                        messageImg.setImageResource(R.drawable.error_search)
+                        placeholderText.text = getString(R.string.nothing_found)
+                        updateButton.visibility = View.GONE
+                    } else {
+                        showResults(response.results)
+                    }
+                } catch (e: Exception) {
+                    //Плейсхолдер (ошибка сервера)
+                    recyclerView.visibility = View.GONE
+                    placeholderLayout.visibility = View.VISIBLE
+                    messageImg.setImageResource(R.drawable.error_connect)
+                    placeholderText.text = getString(R.string.err_connect)
+                    updateButton.visibility = View.VISIBLE
+                }
+            }
+        } else {
+            closeSearch()
+        }
+    }
 
+
+    private fun showResults(tracks: List<Track>) {
+
+        adapter.updateTracks(tracks)
+        recyclerView.visibility = View.VISIBLE
+        placeholderLayout.visibility = View.GONE
+
+    }
+
+
+    private fun clearEditText(inputEditText: EditText?) {
+        inputEditText?.setText(null)
+        val inputMethodManager =
+            this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        inputMethodManager?.hideSoftInputFromWindow(inputEditText?.windowToken, 0)
+    }
+
+    // убрать список
+    private fun closeSearch() {
+        recyclerView.visibility = View.GONE
+        placeholderLayout.visibility = View.GONE
+    }
+
+    fun closeHideKeyboard() {
+        val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hideKeyboard.hideSoftInputFromWindow(searchEditText.windowToken, 0)
+    }
 }

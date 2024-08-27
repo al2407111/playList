@@ -12,7 +12,6 @@ class MainActivity : AppCompatActivity(){
 
             setContentView(R.layout.activity_main)
 
-
             val settingsButton = findViewById<Button>(R.id.button_settings)
             settingsButton.setOnClickListener {
             val settingsButtonIntent = Intent(this, ActivitySettings::class.java)
