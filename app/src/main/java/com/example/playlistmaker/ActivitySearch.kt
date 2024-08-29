@@ -46,11 +46,9 @@ class ActivitySearch : AppCompatActivity() {
         placeholderText = findViewById(R.id.message_text)
         updateButton = findViewById(R.id.update_button)
 
-
         managementBack()
         setupSearch()
         setupRecyclerView()
-
 
     }
 
@@ -89,7 +87,8 @@ class ActivitySearch : AppCompatActivity() {
             searchEditText.text.clear()
             clearButton.visibility = View.GONE
             closeSearch()
-            closeHideKeyboard()
+                 closeHideKeyboard()
+                // searchEditText.clearFocus()
         }
 
 

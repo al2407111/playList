@@ -7,11 +7,20 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.content.edit
+import com.google.android.material.switchmaterial.SwitchMaterial
+
+private const val EXAMPLE_PREFERENCES = "shared_preferences"
+private const val SWITCH_THEME_KEY = "key_of_switch_theme"
 
 class ActivitySettings : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
+
+
+
 
         val backToMainSettings = findViewById<ImageView>(R.id.button_back)
         val shareButton = findViewById<TextView>(R.id.share_setting)
@@ -19,9 +28,30 @@ class ActivitySettings : AppCompatActivity() {
         val userAgreementButton = findViewById<TextView>(R.id.userAgreement_setting)
 
 
+        // Переключатель темы
+        val themeSwitcher = findViewById<SwitchMaterial>(R.id.switcher)
+        val themeSharedPreferences = getSharedPreferences(EXAMPLE_PREFERENCES, MODE_PRIVATE)
+        themeSwitcher.isChecked = (application as App).darkTheme
+        themeSwitcher.setOnCheckedChangeListener { switcher, checked ->
+            (applicationContext as App).switchTheme(checked)
+            themeSharedPreferences.edit{
+                putBoolean(SWITCH_THEME_KEY, checked)
+                apply()
+            }
+        }
+
+
+
+
+
+
         backToMainSettings.setOnClickListener {
             finish()
         }
+
+
+
+
 
         shareButton.setOnClickListener {
             shareApp()

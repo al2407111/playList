@@ -45,7 +45,7 @@
                 style="@style/SettingsMenuTextMode"
                 android:text="@string/dark_thema" />
 
-            <androidx.appcompat.widget.SwitchCompat
+            <com.google.android.material.switchmaterial.SwitchMaterial
                 android:id="@+id/switcher"
                 android:layout_width="@dimen/padding56"
                 android:layout_height="@dimen/padding48"
