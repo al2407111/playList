@@ -4,4 +4,6 @@
     <color name="search_icon_track">#FFFFFF</color>
     <color name="time">#1A1B22</color>
     <color name="light_main_time">#1A1B22</color>
+    <color name="search_err_icon">#FFFFFF</color>
+    <color name="update">#1A1B22</color>
 </resources>

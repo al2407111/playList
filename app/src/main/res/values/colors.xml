@@ -18,4 +18,6 @@
     <color name="cursor_blue">#3772E7</color>
     <color name="search_icon_track">#AEAFB4</color>
     <color name="time">#FFFFFFFF</color>
+    <color name="search_err_icon">#1A1B22</color>
+    <color name="update">#ffffff</color>
 </resources>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
 
     android:id="@+id/settings"
     android:layout_width="match_parent"
@@ -57,6 +58,9 @@
                 android:textCursorDrawable="@drawable/cursor"
                 android:textSize="@dimen/padding16"
                 android:maxLines="1"
+                android:imeOptions="actionDone"
+                android:singleLine="true"
+                android:windowSoftInputMode="stateHidden"
                 />
 
             <ImageView
@@ -86,9 +90,55 @@
             android:layout_marginTop="@dimen/padding16"
             >
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/trackList"
+                android:id="@+id/track_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                />
+            <LinearLayout
+                android:id="@+id/placeholder_message"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone"
+                >
+
+                <ImageView
+                    android:id="@+id/message_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/padding86"
+                    android:src="@drawable/error_search" />
+
+                <TextView
+                android:id="@+id/message_text"
+                style="@style/ErrTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/padding24"
+                android:layout_marginTop="@dimen/padding16"
+                android:layout_marginEnd="@dimen/padding24"
+                android:textAlignment="center"
+                tools:text="Ошибка Ошибdssssssssssssssssssssssssssdwddwdwwddddddwddd " />
+                <Button
+                    style="@style/MainTextStyle"
+                    android:id="@+id/update_button"
+                    android:backgroundTint="@color/search_err_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/padding24"
+                    android:text="@string/update"
+                    android:textColor="@color/update"
+                    android:textAllCaps="false"
+                    app:cornerRadius="@dimen/padding54"
+
+                    />
+
+            </LinearLayout>
         </FrameLayout>
     </LinearLayout>
 </LinearLayout>

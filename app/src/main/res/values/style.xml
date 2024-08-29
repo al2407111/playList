@@ -64,6 +64,13 @@
         <item name="android:fontFamily">@font/ys_display_regular</item>
         <item name="android:textFontWeight">400</item>
     </style>
+    <style name="ErrTextStyle">
+        <item name="android:fontFamily">@font/ys_display_medium</item>
+        <item name="android:textFontWeight">400</item>
+        <item name="android:textColor">@color/search_err_icon</item>
+    </style>
+
+
     <style name="SearchInputIcon">
         <item name="android:layout_width">@dimen/padding36</item>
         <item name="android:layout_height">@dimen/padding36</item>
