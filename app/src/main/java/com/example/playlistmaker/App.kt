@@ -1,6 +1,7 @@
 package com.example.playlistmaker
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 
 
@@ -9,7 +10,7 @@ private const val SWITCH_THEME_KEY = "key_of_switch_theme"
 
 
 class App : Application() {
-
+    lateinit var sharedPreferences : SharedPreferences
     internal var darkTheme: Boolean = false
 
     override fun onCreate() {

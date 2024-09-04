@@ -38,6 +38,7 @@
                 android:textSize="@dimen/text_size22" />
 
         </LinearLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -83,6 +84,53 @@
                 android:src="@drawable/exit_button"
                 />
         </FrameLayout>
+        <LinearLayout
+            android:id="@+id/historyMain"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+
+            >
+            <TextView
+                android:id="@+id/history"
+                style="@style/ErrTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/padding42"
+                android:layout_marginBottom="@dimen/padding20"
+                android:gravity="end"
+                android:text="@string/searh_history"
+                android:textSize="@dimen/text_size22" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <Button
+                android:id="@+id/clear_history_button"
+                style="@style/MainTextStyle"
+                android:text="@string/clear_history"
+                android:backgroundTint="@color/search_err_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/padding24"
+                android:textColor="@color/update"
+                android:textAllCaps="false"
+                app:cornerRadius="@dimen/padding54"
+                />
+
+
+        </LinearLayout>
+
+
+
 
         <FrameLayout
             android:layout_width="match_parent"
@@ -135,9 +183,7 @@
                     android:textColor="@color/update"
                     android:textAllCaps="false"
                     app:cornerRadius="@dimen/padding54"
-
                     />
-
             </LinearLayout>
         </FrameLayout>
     </LinearLayout>

@@ -24,6 +24,8 @@
     <string name="update">Обновить</string>
     <string name="nothing_found">Ничего не нашлось</string>
     <string name="err_connect">Проблемы со связью\n\nЗагрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="searh_history">Вы искали</string>
+    <string name="clear_history">Очистить историю</string>
     <string name="lorem_ipsum">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
