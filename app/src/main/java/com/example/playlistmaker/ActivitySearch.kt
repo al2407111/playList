@@ -118,7 +118,7 @@ class ActivitySearch : AppCompatActivity() , TrackViewHolder.Listener{
             searchEditText.clearFocus()
 
         }
-// отлслеживания фокуса
+// отлслеживания фокуса И ИСТОРИЯ
         searchEditText.setOnFocusChangeListener { view, hasFocus ->
             if (hasFocus && searchHistory.savesTracks.size>0 ) {
                 historyMain.visibility= View.VISIBLE
@@ -223,17 +223,22 @@ class ActivitySearch : AppCompatActivity() , TrackViewHolder.Listener{
         val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         hideKeyboard.hideSoftInputFromWindow(searchEditText.windowToken, 0)
     }
-    private companion object {
-        private val trackList = ArrayList<Track>()
-        const val SEARCH_HISTORY = "Search history"
 
-    }
 
     override fun onClickTrackHolder(track: Track) {
         val sharedPrefs = getSharedPreferences(SEARCH_HISTORY, MODE_PRIVATE)
         searchHistory = SearchHistory(sharedPrefs)
         searchHistory.saveTrack(track)
-        val list = arrayListOf(track)
+       // val list = arrayListOf(track)
+//        val index: Int = trackList2.indexOf(track)
+//        if (index >= 0) trackList2.removeAt(index)
+//        if (searchHistory.savesTracks.size > 10) trackList2.removeAt(10)
+//     trackList2.add(searchHistory.savesTracks.size-1,track)
+
+    savedTrackAdapter.updateTracks(searchHistory.getSavedTracks())
+
+
+
 
     }
     fun historu(){
@@ -247,8 +252,15 @@ class ActivitySearch : AppCompatActivity() , TrackViewHolder.Listener{
         cleanButton.setOnClickListener {
         searchHistory.cleanHistory()
        historyMain.visibility= View.GONE
-
+         //   trackList2.clear()
 
         }
     }
+
+    private companion object {
+        private val trackList = ArrayList<Track>()
+        const val SEARCH_HISTORY = "Search history"
+        private val trackList2 = ArrayList<Track>()
+    }
+
 }

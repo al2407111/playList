@@ -2,6 +2,7 @@ package com.example.playlistmaker
 
 
 import android.content.SharedPreferences
+import android.view.ViewGroup
 import androidx.core.content.edit
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
@@ -28,6 +29,7 @@ class SearchHistory(
         if (index >= 0) tracks.removeAt(index)
         tracks.add(0, track)
         if (tracks.size > 10) tracks.removeAt(10)
+
         val json = Gson().toJson(tracks)
         sharedPreferences
             .edit()
@@ -35,8 +37,10 @@ class SearchHistory(
             .apply()
         savesTracks = tracks
 
+          //RecyclerView.Adapter<TrackViewHolder>()
+        }
 
-    }
+
 
     fun cleanHistory() {
         savesTracks.clear()
@@ -47,13 +51,9 @@ class SearchHistory(
     }
 
 
-
-
-
-
-
     companion object {
         const val HISTORY_KEY = "key"
     }
+
 
 }
