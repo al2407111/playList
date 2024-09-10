@@ -11,8 +11,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-
-class TrackAdapter(private var tracks: List<Track>) :  RecyclerView.Adapter<TrackViewHolder>(){
+class TrackAdapter(private var tracks: List<Track>,
+                   private val listener: TrackViewHolder.Listener) :  RecyclerView.Adapter<TrackViewHolder>(){
 
 
 
@@ -22,14 +22,15 @@ class TrackAdapter(private var tracks: List<Track>) :  RecyclerView.Adapter<Trac
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(tracks[position])
+        holder.bind(tracks[position], listener)
     }
 
     override fun getItemCount() = tracks.size
 
     fun updateTracks(newTracks: List<Track>) {
         tracks = newTracks
-        notifyDataSetChanged()
+        notifyDataSetChanged() //RecyclerView.Adapter<TrackViewHolder>()
     }
+
 
 }

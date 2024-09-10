@@ -12,7 +12,7 @@ interface iTunesApi {
 
 data class SearchResponse(
     val resultCount: Int,
-    val results: List<Track>
+    val results: ArrayList<Track>
 )
 
 object iTunesApiService {

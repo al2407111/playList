@@ -1,5 +1,6 @@
 package com.example.playlistmaker
 
+
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -22,7 +23,7 @@ import kotlinx.coroutines.launch
 
 
 
-class ActivitySearch : AppCompatActivity() {
+class ActivitySearch : AppCompatActivity() , TrackViewHolder.Listener{
     private lateinit var searchEditText: EditText
     private lateinit var clearButton: ImageView
     private lateinit var backButton: ImageView
@@ -32,6 +33,15 @@ class ActivitySearch : AppCompatActivity() {
     private lateinit var updateButton: Button
     private lateinit var adapter: TrackAdapter
     private lateinit var placeholderLayout: LinearLayout
+    private lateinit var recyclerView2: RecyclerView
+    private lateinit var cleanButton: Button
+
+    private lateinit var historyMain: LinearLayout
+    private lateinit var searchHistory: SearchHistory
+    private lateinit var savedTrackAdapter: TrackAdapter
+
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,12 +55,20 @@ class ActivitySearch : AppCompatActivity() {
         messageImg = findViewById(R.id.message_img)
         placeholderText = findViewById(R.id.message_text)
         updateButton = findViewById(R.id.update_button)
+        recyclerView2 = findViewById(R.id.recyclerView)
+        cleanButton=findViewById(R.id.clear_history_button)
+        historyMain = findViewById(R.id.historyMain)
+
+
+        historyMain.visibility= View.GONE
+
+
 
 
         managementBack()
         setupSearch()
         setupRecyclerView()
-
+        historu()
 
     }
 
@@ -63,18 +81,24 @@ class ActivitySearch : AppCompatActivity() {
             finish()
         }
         clearButton.visibility = View.GONE
+
         // нажатиe иконки
         clearButton.setOnClickListener {
             // Сброс
+
             clearEditText(searchEditText)
+
+
         }
 
     }
 
     private fun setupSearch() {
+
         searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 // ВЫПОЛНЯЙТЕ ПОИСК
+
                 performSearch()
                 closeHideKeyboard()
                 true
@@ -88,15 +112,28 @@ class ActivitySearch : AppCompatActivity() {
         clearButton.setOnClickListener {
             searchEditText.text.clear()
             clearButton.visibility = View.GONE
+           // searchEditText.setFocusable(false)
             closeSearch()
             closeHideKeyboard()
-        }
+            searchEditText.clearFocus()
 
+        }
+// отлслеживания фокуса И ИСТОРИЯ
+        searchEditText.setOnFocusChangeListener { view, hasFocus ->
+            if (hasFocus && searchHistory.savesTracks.size>0 ) {
+                historyMain.visibility= View.VISIBLE
+
+            } else {
+                historyMain.visibility= View.GONE
+            }
+        }
 
 
         searchEditText.addTextChangedListener {
             if (searchEditText.text.isNullOrEmpty()) {//проверка на наличие строки
                 clearButton.visibility = View.GONE
+                historyMain.visibility= View.VISIBLE
+
             } else {
                 clearButton.visibility = View.VISIBLE
             }
@@ -105,27 +142,38 @@ class ActivitySearch : AppCompatActivity() {
         updateButton.setOnClickListener {
             performSearch()
         }
+
     }
 
+
+
+
+
     private fun setupRecyclerView() {
-        adapter = TrackAdapter(emptyList())
+     adapter = TrackAdapter(emptyList(),this)
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     private fun performSearch() {
         val term = searchEditText.text.toString().trim()
         if (term.isNotEmpty()) {
+            historyMain.visibility= View.GONE
             lifecycleScope.launch {
                 try {
                     val response = iTunesApiService.searchTracks(term)
+
+
                     if (response.results.isEmpty()) {
-                      //  Плейсхолдер (нет результатов)
+                        //  Плейсхолдер (нет результатов)
                         recyclerView.visibility = View.GONE
                         placeholderLayout.visibility = View.VISIBLE
                         messageImg.setImageResource(R.drawable.error_search)
                         placeholderText.text = getString(R.string.nothing_found)
                         updateButton.visibility = View.GONE
+
+                        historyMain.visibility= View.GONE
                     } else {
                         showResults(response.results)
                     }
@@ -136,10 +184,12 @@ class ActivitySearch : AppCompatActivity() {
                     messageImg.setImageResource(R.drawable.error_connect)
                     placeholderText.text = getString(R.string.err_connect)
                     updateButton.visibility = View.VISIBLE
+
                 }
             }
         } else {
             closeSearch()
+
         }
     }
 
@@ -147,17 +197,20 @@ class ActivitySearch : AppCompatActivity() {
     private fun showResults(tracks: List<Track>) {
 
         adapter.updateTracks(tracks)
+
         recyclerView.visibility = View.VISIBLE
         placeholderLayout.visibility = View.GONE
-
+      //  historyMain.visibility= View.GONE
     }
 
 
     private fun clearEditText(inputEditText: EditText?) {
         inputEditText?.setText(null)
         val inputMethodManager =
-            this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+      this.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         inputMethodManager?.hideSoftInputFromWindow(inputEditText?.windowToken, 0)
+       // searchEditText.clearFocus()
+
     }
 
     // убрать список
@@ -170,4 +223,44 @@ class ActivitySearch : AppCompatActivity() {
         val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         hideKeyboard.hideSoftInputFromWindow(searchEditText.windowToken, 0)
     }
+
+
+    override fun onClickTrackHolder(track: Track) {
+        val sharedPrefs = getSharedPreferences(SEARCH_HISTORY, MODE_PRIVATE)
+        searchHistory = SearchHistory(sharedPrefs)
+        searchHistory.saveTrack(track)
+       // val list = arrayListOf(track)
+//        val index: Int = trackList2.indexOf(track)
+//        if (index >= 0) trackList2.removeAt(index)
+//        if (searchHistory.savesTracks.size > 10) trackList2.removeAt(10)
+//     trackList2.add(searchHistory.savesTracks.size-1,track)
+
+    savedTrackAdapter.updateTracks(searchHistory.getSavedTracks())
+
+
+
+
+    }
+    fun historu(){
+        val  sharedPrefs = getSharedPreferences(SEARCH_HISTORY, MODE_PRIVATE)
+       val trackAdapter = TrackAdapter(trackList, this)
+        searchHistory = SearchHistory(sharedPrefs)
+        savedTrackAdapter = TrackAdapter(searchHistory.getSavedTracks(), this)
+        recyclerView2.setItemViewCacheSize(searchHistory.savesTracks.size)
+        recyclerView2.adapter = savedTrackAdapter
+
+        cleanButton.setOnClickListener {
+        searchHistory.cleanHistory()
+       historyMain.visibility= View.GONE
+         //   trackList2.clear()
+
+        }
+    }
+
+    private companion object {
+        private val trackList = ArrayList<Track>()
+        const val SEARCH_HISTORY = "Search history"
+        private val trackList2 = ArrayList<Track>()
+    }
+
 }
