@@ -23,6 +23,7 @@
 
             <ImageView
                 android:id="@+id/button_back"
+                android:layout_margin="12dp"
                 style="@style/SettingsButtonViewArrowMode" />
 
             <TextView

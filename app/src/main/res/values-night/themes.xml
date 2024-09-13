@@ -5,7 +5,6 @@
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
         <item name="colorOnPrimary">@color/black</item>
         <item  name="colorOnSecondary">@color/black</item>
-
     </style>
     <style name="SettingsButtonViewShareMode">
         <item name="android:layout_gravity">end</item>
@@ -41,7 +40,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_vertical</item>
-        <item name="android:layout_margin">@dimen/padding12</item>
+
         <item name="android:src">@drawable/ic_dark_arrow</item>
         <item name="android:padding">@dimen/padding4</item>
 
