@@ -19,12 +19,18 @@
     <dimen name="padding19">19dp</dimen>
     <dimen name="padding24">24dp</dimen>
     <dimen name="padding20">20dp</dimen>
+    <dimen name="padding22">22dp</dimen>
+    <dimen name="padding26">26dp</dimen>
+    <dimen name="padding28">28dp</dimen>
+    <dimen name="padding30">30dp</dimen>
     <dimen name="padding36">36dp</dimen>
     <dimen name="padding42">42dp</dimen>
+    <dimen name="padding51">51dp</dimen>
     <dimen name="padding54">56dp</dimen>
     <dimen name="padding56">56dp</dimen>
     <dimen name="padding48">48dp</dimen>
     <dimen name="padding61">61dp</dimen>
-    <dimen name="padding86">61dp</dimen>
+    <dimen name="padding80">80dp</dimen>
+    <dimen name="padding86">86dp</dimen>
     <dimen name="track_radius">2dp</dimen>
 </resources>

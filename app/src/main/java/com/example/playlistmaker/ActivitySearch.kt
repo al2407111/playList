@@ -2,6 +2,7 @@ package com.example.playlistmaker
 
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -16,6 +17,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
 
 import kotlinx.coroutines.launch
 
@@ -229,15 +231,14 @@ class ActivitySearch : AppCompatActivity() , TrackViewHolder.Listener{
         val sharedPrefs = getSharedPreferences(SEARCH_HISTORY, MODE_PRIVATE)
         searchHistory = SearchHistory(sharedPrefs)
         searchHistory.saveTrack(track)
-       // val list = arrayListOf(track)
-//        val index: Int = trackList2.indexOf(track)
-//        if (index >= 0) trackList2.removeAt(index)
-//        if (searchHistory.savesTracks.size > 10) trackList2.removeAt(10)
-//     trackList2.add(searchHistory.savesTracks.size-1,track)
 
     savedTrackAdapter.updateTracks(searchHistory.getSavedTracks())
 
-
+        val displayIntent = Intent(this, ActivityPlayer::class.java)
+        val gson = Gson()
+        val json = gson.toJson(track)
+        displayIntent.putExtra("track", json)
+        startActivity(displayIntent)
 
 
     }
