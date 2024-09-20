@@ -13,13 +13,19 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
+    <string name="player_track_time">Длительность</string>
+    <string name="player_collection_name">Альбом</string>
+    <string name="player_release_date">Год</string>
+    <string name="player_genre">Жанр</string>
+    <string name="player_country">Страна</string>
+    <string name="player_time">00:00</string>
 
     <string name="app_share_message">https://practicum.yandex.ru/android-developer/?from=catalog</string>
     <string name="sharing_type">text/plain</string>
     <string name="mail_subject">Сообщение разработчикам и разработчицам приложения Playlist Maker</string>
     <string name="mail_text">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="mail_address">al2407_9@yandex.ru</string>
-
+    <string name="noReply">Нет Ответа</string>
     <string name="url_offer">https://yandex.ru/legal/practicum_offer/</string>
     <string name="update">Обновить</string>
     <string name="nothing_found">Ничего не нашлось</string>
@@ -27,6 +33,10 @@
     <string name="searh_history">Вы искали</string>
     <string name="clear_history">Очистить историю</string>
     <string name="lorem_ipsum">
+
+
+
+
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem. Mauris
         volutpat, dolor id interdum ullamcorper, risus dolor egestas lectus, sit amet mattis purus
         dui nec risus. Maecenas non sodales nisi, vel dictum dolor. Class aptent taciti sociosqu ad

@@ -20,4 +20,7 @@
     <color name="time">#FFFFFFFF</color>
     <color name="search_err_icon">#1A1B22</color>
     <color name="update">#ffffff</color>
+    <color name="player_icon_track_menu">#1A1B22</color>
+    <color name="track_name_plaer">#1A1B22</color>
+    <color name="PlayerText">#AEAFB4</color>
 </resources>
